@@ -1,0 +1,95 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <time.h>
+
+int main()
+{
+    printf("******BLACKJACK OYUNU******\n");
+    int toplam=0,kart[10],win=0,loss=0;
+char secim[8];
+    char *s=&secim[8];
+    bas:
+    srand(time(NULL));
+    for(int i=0;i<2;i++){
+        kart[i]= rand()%11+1;
+        toplam += kart[i];
+
+    }
+    printf("\nIlk kart %d\n",kart[0]);
+    printf("Ikinci kart:%d\n",kart[1]);
+    printf("Kartlarin toplami: %d",toplam);
+    if(toplam == 21){
+                printf("\nBLACKJACK\nTebrikler kazandiniz\n");
+                win++;
+                printf("WIN:%d",win);
+                printf("\nLOSS:%d",loss);
+                toplam=0;
+        printf("\n\nBir daha oynamak ister misiniz (Istiyorsaniz e istemiyorsaniz h): ");
+        scanf("%s",&*s);
+        if(*s== 'e'){
+            goto bas;
+        }
+                goto son;
+            }
+
+    for(int i=2;i<10;i++)
+    {
+        kart[i]= rand()%11+1;
+
+    printf("\nDevam etmek ister misiniz (Istiyorsaniz e istemiyorsaniz h yazin): ");
+    scanf("%s",&*s);
+    if(*s== 'e'){
+            toplam += kart[i];
+            printf("Kart: %d\n",kart[i]);
+            printf("Yeni toplam: %d\n",toplam);
+
+            if(toplam == 21){
+                printf("\nBLACKJACK\nTebrikler kazandiniz\n");
+                win++;
+                printf("WIN:%d",win);
+                printf("\nLOSS:%d",loss);
+                toplam=0;
+        printf("\n\nBir daha oynamak ister misiniz (Istiyorsaniz e istemiyorsaniz h): ");
+        scanf("%s",&*s);
+        if(*s== 'e'){
+            goto bas;
+        }
+                goto son;
+            }
+
+            if(toplam>21){
+                printf("\nOYUNU KAYBETTINIZ\n");
+                loss++;
+                printf("WIN:%d",win);
+        printf("\nLOSS:%d",loss);
+        toplam=0;
+        printf("\n\nBir daha oynamak ister misiniz (Istiyorsaniz e istemiyorsaniz h): ");
+        scanf("%s",&*s);
+        if(*s== 'e'){
+            goto bas;
+        }
+                goto son;
+            }
+
+    }
+    if(*s == 'h'){
+        printf("\nSizin kumariniz burda biter\n");
+        printf("\nKAYBETTINIZ\n");
+        loss++;
+        printf("WIN:%d",win);
+        printf("\nLOSS:%d",loss);
+        toplam=0;
+        printf("\n\nBir daha oynamak ister misiniz (Istiyorsaniz e istemiyorsaniz h): ");
+        scanf("%s",&*s);
+        if(*s== 'e'){
+            goto bas;
+        }
+        goto son;
+    }
+
+    }
+    son:
+      printf("\nTESEKKURLER, YINE BEKLERIZ.\n");
+    return 0;
+}
